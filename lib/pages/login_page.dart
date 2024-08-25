@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutterproject/components/my_button.dart';
 import 'package:flutterproject/components/my_textfield.dart';
 
+import 'home_page.dart';
+
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
   const LoginPage({super.key, required this.onTap});
@@ -13,9 +15,22 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   //text editing controllers
   final TextEditingController emailController = TextEditingController();
-
   final TextEditingController passwordController = TextEditingController();
 
+  // login method
+  void login()
+  {
+    /*
+    fill out authentication here  //for now Its not done
+     */
+
+    //navigate to home page
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const HomePage(),
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
 
             const SizedBox(height: 25),
-            //mesage, app slogan
+            //message, app slogan
 
             Text(
               "Hungry.com",
@@ -63,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
 
             //sign in button
             MyButton(
-                onTap: (){},
+                onTap: login,
                 text: "Sign in"
             ),
             const SizedBox(height: 25),

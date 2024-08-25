@@ -10,7 +10,7 @@ class LoginOrRegister extends StatefulWidget {
 }
 
 class _LoginOrRegisterState extends State<LoginOrRegister> {
-  //Intially show login page
+  //Initially show login page
 
   bool showLoginPage = true;
 
