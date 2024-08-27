@@ -8,9 +8,9 @@ class MyCurrentLocation extends StatelessWidget{
     showDialog(
         context: context, 
         builder: (context)=>AlertDialog(
-          title: Text("Your Location"),
-          content: TextField(
-            decoration: const InputDecoration(hintText: "search Address..."),
+          title: const Text("Your Location"),
+          content: const TextField(
+            decoration: InputDecoration(hintText: "search Address..."),
           ),
           actions: [
 
@@ -55,7 +55,7 @@ class MyCurrentLocation extends StatelessWidget{
                     ),
                 ),
                 //drop down menu
-                Icon(Icons.keyboard_arrow_down_rounded),
+                const Icon(Icons.keyboard_arrow_down_rounded),
               ]
             )
           ),  
