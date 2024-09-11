@@ -5,6 +5,7 @@ import 'package:flutterproject/components/my_food_tile.dart';
 import 'package:flutterproject/components/my_sliver_app_bar.dart';
 import 'package:flutterproject/models/food.dart';
 import 'package:flutterproject/models/restaurant.dart';
+import 'package:flutterproject/pages/food_page.dart';
 import 'package:provider/provider.dart';
 import '../components/my_current_location.dart';
 import '../components/my_drawer.dart';
@@ -54,7 +55,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
           return FoodTile(
               food: food,
-              onTap: () {}
+              onTap: ()=>Navigator.push(
+                context,
+                MaterialPageRoute(
+                builder: (context)=>FoodPage(food: food),
+                ),
+              ),
           );
         },
       );
