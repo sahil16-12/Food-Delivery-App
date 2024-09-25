@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutterproject/components/my_drawer_tile.dart';
+import 'package:flutterproject/services/auth/auth_service.dart';
 
 import '../pages/settings_page.dart';
 
 class MyDrawer extends StatelessWidget
 {
   const MyDrawer({super.key});
+
+  void logout() {
+    final authservice = AuthService();
+    authservice.signOut();
+  }
   @override
   Widget build(BuildContext context )
   {
@@ -57,7 +63,7 @@ class MyDrawer extends StatelessWidget
           MyDrawerTile(
             text: "L O G O U T",
             icon: Icons.logout,
-            onTap: (){},
+            onTap: logout,
           ),
           const SizedBox(height: 25),
         ],

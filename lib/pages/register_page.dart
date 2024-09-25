@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterproject/services/auth/auth_service.dart';
 
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
@@ -17,10 +18,41 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   //text editing controllers
   final TextEditingController emailController = TextEditingController();
-
   final TextEditingController passwordController = TextEditingController();
-
   final TextEditingController confirmPasswordController = TextEditingController();
+  //register method
+  void register() async{
+    //get auth service
+    final _authService = AuthService();
+
+    //check if passswords match -> create user
+    if(passwordController.text==confirmPasswordController.text){
+      try{
+        await _authService.signUpWithEmailPassword(
+            emailController.text,
+            passwordController.text,
+        );
+      }
+      catch(e){
+        showDialog(context: context,
+            builder: (context) => AlertDialog(
+              title: Text(e.toString()),
+            ),
+        );
+      }
+    }
+    //if passswords dont match -> error
+    else{
+      showDialog(context: context,
+        builder: (context) => const AlertDialog(
+          title: Text("Passwords dont match!"),
+        ),
+      );
+    }
+
+
+
+  }
 
 
   @override
@@ -77,7 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
             //sign up button
             MyButton(
-                onTap: (){},
+                onTap: register,
                 text: "Sign Up"
             ),
             const SizedBox(height: 25),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterproject/components/my_button.dart';
 import 'package:flutterproject/components/my_textfield.dart';
+import 'package:flutterproject/services/auth/auth_service.dart';
 
-import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
@@ -18,18 +18,21 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
 
   // login method
-  void login()
+  void login() async
   {
-    /*
-    fill out authentication here  //for now Its not done
-     */
-
-    //navigate to home page
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const HomePage(),
-      ),
-    );
+      final _authService = AuthService();
+     //try sign in
+      try{
+        await _authService.signInWithEmailPassword(emailController.text, passwordController.text,);
+      }
+     //display any errrors
+      catch(e){
+        showDialog(context: context,
+          builder: (context) => AlertDialog(
+            title: Text(e.toString()),
+          ),
+        );
+      }
   }
   @override
   Widget build(BuildContext context) {
